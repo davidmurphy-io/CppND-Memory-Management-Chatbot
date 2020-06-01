@@ -18,11 +18,7 @@ ChatLogic::ChatLogic()
     //// STUDENT CODE
     ////
 
-    // create instance of chatbot
-    _chatBot = new ChatBot("../images/chatbot.png");
-
-    // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
-    _chatBot->SetChatLogicHandle(this);
+    // ChatLogic no longer ownes ChatBot()
 
     ////
     //// EOF STUDENT CODE
@@ -34,8 +30,7 @@ ChatLogic::~ChatLogic()
     //// STUDENT CODE
     ////
 
-    // delete chatbot instance
-    delete _chatBot;
+    // No longer need to delete _chatbot as ChatLogic has no ownership of it
 
     // No longer need to delete _nodes, as it's now a smart pointer
 
@@ -209,10 +204,16 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
             }
         }
     }
+    
+    // create instance of chatbot
+    ChatBot chatbot("../images/chatbot.png");
 
+    SetChatbotHandle(&chatbot); // Update _chatbot handle
+    // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
+    chatbot.SetChatLogicHandle(this);
     // add chatbot to graph root node
-    _chatBot->SetRootNode(rootNode);
-    rootNode->MoveChatbotHere(_chatBot);
+    chatbot.SetRootNode(rootNode);
+    rootNode->MoveChatbotHere(std::move(chatbot));
     
     ////
     //// EOF STUDENT CODE
