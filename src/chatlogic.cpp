@@ -14,7 +14,6 @@
 
 ChatLogic::ChatLogic()
 {
-    std::cout << "ChatLogic()" << std::endl;
     //// STUDENT CODE
     ////
 
@@ -26,7 +25,6 @@ ChatLogic::ChatLogic()
 
 ChatLogic::~ChatLogic()
 {
-    std::cout << "~ChatLogic()" << std::endl;
     //// STUDENT CODE
     ////
 
@@ -43,7 +41,6 @@ ChatLogic::~ChatLogic()
 template <typename T>
 void ChatLogic::AddAllTokensToElement(std::string tokenID, tokenlist &tokens, T &element)
 {
-    std::cout << "ChatLogic::AddAllTokensToElement()" << std::endl;
     // find all occurences for current node
     auto token = tokens.begin();
     while (true)
@@ -64,7 +61,6 @@ void ChatLogic::AddAllTokensToElement(std::string tokenID, tokenlist &tokens, T 
 void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
 {
     // load file with answer graph elements
-    std::cout << "ChatLogic::LoadAnswerGraphFromFile()" << std::endl;
     std::ifstream file(filename);
 
     // check for file availability and process it line by line
@@ -221,30 +217,25 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
 
 void ChatLogic::SetPanelDialogHandle(ChatBotPanelDialog *panelDialog)
 {
-    std::cout << "ChatLogic::SetPanelDialogHandle()" << std::endl;
     _panelDialog = panelDialog;
 }
 
 void ChatLogic::SetChatbotHandle(ChatBot *chatbot)
 {
-    std::cout << "ChatLogic::SetChatbotHandle()" << std::endl;
     _chatBot = chatbot;
 }
 
 void ChatLogic::SendMessageToChatbot(std::string message)
 {
-    std::cout << "ChatLogis::SendMessageToChatbot()" << std::endl;
     _chatBot->ReceiveMessageFromUser(message);
 }
 
 void ChatLogic::SendMessageToUser(std::string message)
 {
-    std::cout << "ChatLogis::SendMessageToUser()" << std::endl;
     _panelDialog->PrintChatbotResponse(message);
 }
 
 wxBitmap *ChatLogic::GetImageFromChatbot()
 {
-    std::cout << "ChatLogis::GetImageFromChatbot()" << std::endl;
     return _chatBot->GetImageHandle();
 }
